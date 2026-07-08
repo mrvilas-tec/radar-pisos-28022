@@ -207,7 +207,7 @@
 <body>
   <header>
     <h1>Radar pisos 28022</h1>
-    <div class="sub">Alquiler cerca de Plenilunio o con transporte razonable - generado 2026-07-09 00:40</div>
+    <div class="sub">Alquiler cerca de Plenilunio o con transporte razonable - generado 2026-07-09 00:42</div>
   </header>
   <main>
     <section class="summary">
@@ -327,9 +327,6 @@
       </label>
       <label>Habitaciones minimas
         <input id="bedroomsFilter" type="number" min="0" value="2">
-      </label>
-      <label>Habitaciones maximas
-        <input id="maxBedroomsFilter" type="number" min="0" value="3">
       </label>
       
       <label>PIN gestion
@@ -8064,7 +8061,6 @@
       score: document.querySelector('#scoreFilter'),
       price: document.querySelector('#priceFilter'),
       bedrooms: document.querySelector('#bedroomsFilter'),
-      maxBedrooms: document.querySelector('#maxBedroomsFilter'),
       count: document.querySelector('#visibleCount'),
       view: 'all',
     };
@@ -8094,7 +8090,6 @@
       const score = Number(filters.score.value || 0);
       const price = Number(filters.price.value || 0);
       const bedrooms = Number(filters.bedrooms.value || 0);
-      const maxBedrooms = Number(filters.maxBedrooms.value || 0);
       let visible = 0;
       for (const item of listings) {
         const itemPrice = Number(item.dataset.price || 0);
@@ -8110,8 +8105,7 @@
           && (!status || item.dataset.status === status)
           && Number(item.dataset.score || 0) >= score
           && (!price || (itemPrice && itemPrice <= price))
-          && itemBedrooms >= bedrooms
-          && (!maxBedrooms || (itemBedrooms && itemBedrooms <= maxBedrooms));
+          && itemBedrooms >= bedrooms;
         item.hidden = !ok;
         if (ok) visible += 1;
       }
