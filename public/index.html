@@ -1,0 +1,2747 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar pisos 28022</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2933;
+      --muted: #64748b;
+      --line: #d8dee8;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --green: #0f766e;
+      --amber: #b45309;
+      --red: #b91c1c;
+      --blue: #2563eb;
+      --soft: #eef2f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    header {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    h1 { margin: 0 0 8px; font-size: 24px; }
+    .sub { color: var(--muted); font-size: 14px; }
+    main { max-width: 1120px; margin: 0 auto; padding: 18px; }
+    .summary, .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .views {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .views button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+    }
+    .views button.active {
+      border-color: var(--blue);
+      background: var(--soft);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .metric, .filters {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .metric b { display: block; font-size: 22px; }
+    .metric span, label { color: var(--muted); font-size: 13px; }
+    label { display: grid; gap: 5px; }
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+    }
+    .listing {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--muted);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .listing[hidden] { display: none; }
+    .listing.good { border-left-color: var(--green); }
+    .listing[data-urgent="1"] { box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12); }
+    .listing.mid { border-left-color: var(--amber); }
+    .listing.low { border-left-color: var(--red); }
+    .score {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #eef2f7;
+      font-weight: 700;
+      font-size: 22px;
+    }
+    h2 { margin: 0 0 8px; font-size: 18px; }
+    .meta, .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .contact {
+      margin: 8px 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .meta span, .actions span, .actions a, .actions button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 5px 7px;
+      font-size: 13px;
+      background: #fafafa;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .actions a { color: var(--blue); }
+    .actions button { cursor: pointer; }
+    .actions button[data-command] { color: var(--blue); }
+    p { color: var(--muted); margin: 10px 0; }
+    @media (max-width: 640px) {
+      header { padding: 18px; }
+      main { padding: 12px; }
+      .summary, .filters { grid-template-columns: 1fr; }
+      .views button { flex: 1 1 130px; }
+      .listing { grid-template-columns: 1fr; gap: 10px; }
+      .score { width: 48px; height: 48px; font-size: 18px; }
+      .actions span, .actions a, .actions button { flex: 1 1 120px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Radar pisos 28022</h1>
+    <div class="sub">Alquiler cerca de Plenilunio o con transporte razonable - generado 2026-07-08 23:51</div>
+  </header>
+  <main>
+    <section class="summary">
+      <div class="metric"><b id="visibleCount">98</b><span>anuncios visibles</span></div>
+      <div class="metric"><b>98</b><span>anuncios cargados</span></div>
+      <div class="metric"><b>70</b><span>vistos hoy</span></div>
+      <div class="metric"><b>36</b><span>llamar ya</span></div>
+      <div class="metric"><b>0</b><span>favoritos</span></div>
+      <div class="metric"><b>1500 EUR</b><span>presupuesto maximo</span></div>
+      <div class="metric"><b>Coslada, San Fernando de Henares, Torrejon de Ardoz, San Blas-Canillejas, Barajas, Hortaleza, Ciudad Lineal, Vicalvaro, Villaverde</b><span>zonas cercanas iniciales</span></div>
+    </section>
+    <section class="views" aria-label="Vistas rapidas">
+      <button type="button" class="active" data-view="all">Todos</button>
+      <button type="button" data-view="urgent">Llamar ya</button>
+      <button type="button" data-view="seenToday">Vistos hoy</button>
+      <button type="button" data-view="favorite">Favoritos</button>
+      <button type="button" data-view="new">Nuevos</button>
+    </section>
+    <section class="filters" aria-label="Filtros">
+      <label>Buscar
+        <input id="textFilter" type="search" placeholder="direccion, ref, motivo">
+      </label>
+      <label>Distrito
+        <select id="districtFilter">
+          <option value="">Todos</option>
+          <option value="Arcos / San Blas">Arcos / San Blas</option>
+<option value="Barajas">Barajas</option>
+<option value="Canillas / Hortaleza">Canillas / Hortaleza</option>
+<option value="Canillejas">Canillejas</option>
+<option value="Casco Historico Barajas">Casco Historico Barajas</option>
+<option value="Chamberi">Chamberi</option>
+<option value="Ciudad Lineal">Ciudad Lineal</option>
+<option value="Coslada">Coslada</option>
+<option value="El Canaveral / Vicalvaro">El Canaveral / Vicalvaro</option>
+<option value="Hortaleza">Hortaleza</option>
+<option value="Quintana">Quintana</option>
+<option value="Rejas">Rejas</option>
+<option value="Rejas / Canillejas">Rejas / Canillejas</option>
+<option value="Rejas / Plenilunio">Rejas / Plenilunio</option>
+<option value="Rosas">Rosas</option>
+<option value="Rosas / San Blas">Rosas / San Blas</option>
+<option value="San Blas-Canillejas">San Blas-Canillejas</option>
+<option value="San Fernando de Henares">San Fernando de Henares</option>
+<option value="Simancas">Simancas</option>
+<option value="Simancas / MadBit">Simancas / MadBit</option>
+<option value="Simancas / San Blas">Simancas / San Blas</option>
+<option value="Torrejon de Ardoz">Torrejon de Ardoz</option>
+<option value="Vicalvaro">Vicalvaro</option>
+<option value="Villaverde">Villaverde</option>
+        </select>
+      </label>
+      <label>Estado
+        <select id="statusFilter">
+          <option value="">Todos</option>
+          <option value="new">new</option>
+        </select>
+      </label>
+      <label>Score minimo
+        <input id="scoreFilter" type="number" min="0" max="100" value="0">
+      </label>
+      <label>Precio maximo
+        <input id="priceFilter" type="number" min="0" value="1500">
+      </label>
+      <label>Habitaciones minimas
+        <input id="bedroomsFilter" type="number" min="0" value="2">
+      </label>
+    </section>
+    <section id="listings">
+      
+            <article class="listing good" data-district="Canillas / Hortaleza" data-status="new" data-score="100" data-price="1400" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en canillas canillas / hortaleza 111918500-fmos11 1400 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">100</div>
+              <div class="main">
+                <h2>Piso en Canillas</h2>
+                <div class="meta">
+                  <span>Canillas / Hortaleza</span>
+                  <span>1400 EUR</span>
+                  <span>85 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-hortaleza_canillas28043-65883487506_106400/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;111918500-Fmos11&quot;, &quot;address&quot;: &quot;Piso en Canillas&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;100&quot;}'>Copiar</button>
+                  <span>Ref. 111918500-Fmos11</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="El Canaveral / Vicalvaro" data-status="new" data-score="100" data-price="1133" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="calle tolerancia, s/n el canaveral / vicalvaro 23491152-vi-009-002-002-a 1133 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">100</div>
+              <div class="main">
+                <h2>Calle Tolerancia, s/n</h2>
+                <div class="meta">
+                  <span>El Canaveral / Vicalvaro</span>
+                  <span>1133 EUR</span>
+                  <span>61 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-22</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-el_canaveral-6437512178_109700/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;23491152-VI-009-002-002-A&quot;, &quot;address&quot;: &quot;Calle Tolerancia, s/n&quot;, &quot;price_eur&quot;: 1133, &quot;score&quot;: &quot;100&quot;}'>Copiar</button>
+                  <span>Ref. 23491152-VI-009-002-002-A</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rosas / San Blas" data-status="new" data-score="100" data-price="1290" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="piso en san blas, rosas rosas / san blas 2814-015683 1290 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">100</div>
+              <div class="main">
+                <h2>Piso en San Blas, Rosas</h2>
+                <div class="meta">
+                  <span>Rosas / San Blas</span>
+                  <span>1290 EUR</span>
+                  <span>100 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-03</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-san_blas_rosas-65879311278_109200/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;2814-015683&quot;, &quot;address&quot;: &quot;Piso en San Blas, Rosas&quot;, &quot;price_eur&quot;: 1290, &quot;score&quot;: &quot;100&quot;}'>Copiar</button>
+                  <span>Ref. 2814-015683</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1250" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en canillejas canillejas 111663524 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Canillejas</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1250 EUR</span>
+                  <span>117 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-26</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111663524/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111663524&quot;, &quot;address&quot;: &quot;Piso en Canillejas&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111663524</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1195" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en esfinge, 53 canillejas 32036952 1195 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Esfinge, 53</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1195 EUR</span>
+                  <span>107 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/32036952/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;32036952&quot;, &quot;address&quot;: &quot;Piso en Esfinge, 53&quot;, &quot;price_eur&quot;: 1195, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 32036952</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Barajas" data-status="new" data-score="94" data-price="1500" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="av. logrono, barajas barajas barajas-av-logrono-vohome-1500 1500 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Av. Logrono, Barajas</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1500 EUR</span>
+                  <span>0 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/viviendas/madrid-capital/barajas/l" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;barajas-av-logrono-vohome-1500&quot;, &quot;address&quot;: &quot;Av. Logrono, Barajas&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. barajas-av-logrono-vohome-1500</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1400" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="soto, torrejon torrejon de ardoz torrejon-soto-1400-2hab 1400 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Soto, Torrejon</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1400 EUR</span>
+                  <span>73 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-03</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/alquiler-viviendas/torrejon-de-ardoz-madrid/con-de-dos-dormitorios/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;torrejon-soto-1400-2hab&quot;, &quot;address&quot;: &quot;Soto, Torrejon&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. torrejon-soto-1400-2hab</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Casco Historico Barajas" data-status="new" data-score="94" data-price="1250" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en casco historico barajas casco historico barajas 38595-111862614 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Casco Historico Barajas</h2>
+                <div class="meta">
+                  <span>Casco Historico Barajas</span>
+                  <span>1250 EUR</span>
+                  <span>109 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-29</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-38595-111862614" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;38595-111862614&quot;, &quot;address&quot;: &quot;Piso en Casco Historico Barajas&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 38595-111862614</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1305" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="parque cataluna/soto, torrejon torrejon de ardoz torrejon-testa-1305 1305 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Parque Cataluna/Soto, Torrejon</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1305 EUR</span>
+                  <span>67 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/pisos/torrejon-de-ardoz" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;torrejon-testa-1305&quot;, &quot;address&quot;: &quot;Parque Cataluna/Soto, Torrejon&quot;, &quot;price_eur&quot;: 1305, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. torrejon-testa-1305</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rosas" data-status="new" data-score="94" data-price="1500" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="piso en rosas rosas 111880095 1500 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Rosas</h2>
+                <div class="meta">
+                  <span>Rosas</span>
+                  <span>1500 EUR</span>
+                  <span>90 m2</span>
+                  <span>3 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111880095/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111880095&quot;, &quot;address&quot;: &quot;Piso en Rosas&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111880095</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Fernando de Henares" data-status="new" data-score="94" data-price="1200" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="nazario calonge, san fernando san fernando de henares 111953272 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Nazario Calonge, San Fernando</h2>
+                <div class="meta">
+                  <span>San Fernando de Henares</span>
+                  <span>1200 EUR</span>
+                  <span>80 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111953272/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111953272&quot;, &quot;address&quot;: &quot;Nazario Calonge, San Fernando&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111953272</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Fernando de Henares" data-status="new" data-score="94" data-price="1000" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="parque roma, san fernando san fernando de henares 111959236 1000 zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Parque Roma, San Fernando</h2>
+                <div class="meta">
+                  <span>San Fernando de Henares</span>
+                  <span>1000 EUR</span>
+                  <span>44 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111959236/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111959236&quot;, &quot;address&quot;: &quot;Parque Roma, San Fernando&quot;, &quot;price_eur&quot;: 1000, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111959236</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Coslada" data-status="new" data-score="94" data-price="1250" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="el puerto, coslada coslada 111962655 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>El Puerto, Coslada</h2>
+                <div class="meta">
+                  <span>Coslada</span>
+                  <span>1250 EUR</span>
+                  <span>95 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111962655/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111962655&quot;, &quot;address&quot;: &quot;El Puerto, Coslada&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111962655</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas" data-status="new" data-score="94" data-price="1385" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en rejas con gastos rejas 111971007 1385 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Rejas con gastos</h2>
+                <div class="meta">
+                  <span>Rejas</span>
+                  <span>1385 EUR</span>
+                  <span>75 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111971007/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111971007&quot;, &quot;address&quot;: &quot;Piso en Rejas con gastos&quot;, &quot;price_eur&quot;: 1385, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111971007</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Coslada" data-status="new" data-score="94" data-price="1200" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="ciudad 70, coslada coslada 93098249 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Ciudad 70, Coslada</h2>
+                <div class="meta">
+                  <span>Coslada</span>
+                  <span>1200 EUR</span>
+                  <span>85 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-03</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/93098249/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;93098249&quot;, &quot;address&quot;: &quot;Ciudad 70, Coslada&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 93098249</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas / Canillejas" data-status="new" data-score="94" data-price="1500" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle alcala, 708 rejas / canillejas calle-alcala-708-pg-madrid 1500 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Alcala, 708</h2>
+                <div class="meta">
+                  <span>Rejas / Canillejas</span>
+                  <span>1500 EUR</span>
+                  <span>109 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/viviendas/madrid-capital/rejas/no-amueblado/l" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;calle-alcala-708-pg-madrid&quot;, &quot;address&quot;: &quot;Calle Alcala, 708&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. calle-alcala-708-pg-madrid</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1350" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="calle alcala, canillejas canillejas calle-alcala-canillejas-1350 1350 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Alcala, Canillejas</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1350 EUR</span>
+                  <span>59 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://catala.habitaclia.com/lloguer-pisos-canillejas-madrid.htm" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Habitaclia&quot;, &quot;ref&quot;: &quot;calle-alcala-canillejas-1350&quot;, &quot;address&quot;: &quot;Calle Alcala, Canillejas&quot;, &quot;price_eur&quot;: 1350, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. calle-alcala-canillejas-1350</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1250" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso 2 hab canillejas / lf128 canillejas 39350-111663524 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso 2 hab Canillejas / LF128</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1250 EUR</span>
+                  <span>117 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-39350-111663524" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;39350-111663524&quot;, &quot;address&quot;: &quot;Piso 2 hab Canillejas / LF128&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 39350-111663524</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1250" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle herculano canillejas 39378-111961007 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Herculano</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1250 EUR</span>
+                  <span>89 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-39378-111961007" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;39378-111961007&quot;, &quot;address&quot;: &quot;Calle Herculano&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 39378-111961007</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas / Plenilunio" data-status="new" data-score="94" data-price="1385" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="rejas 2 hab con gastos rejas / plenilunio 39519-111971007 1385 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Rejas 2 hab con gastos</h2>
+                <div class="meta">
+                  <span>Rejas / Plenilunio</span>
+                  <span>1385 EUR</span>
+                  <span>75 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-39519-111971007" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;39519-111971007&quot;, &quot;address&quot;: &quot;Rejas 2 hab con gastos&quot;, &quot;price_eur&quot;: 1385, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 39519-111971007</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Simancas / San Blas" data-status="new" data-score="94" data-price="1250" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso 2 hab simancas simancas / san blas 9872-111729041 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso 2 hab Simancas</h2>
+                <div class="meta">
+                  <span>Simancas / San Blas</span>
+                  <span>1250 EUR</span>
+                  <span>65 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-24</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-9872-111729041" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;9872-111729041&quot;, &quot;address&quot;: &quot;Piso 2 hab Simancas&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 9872-111729041</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rosas" data-status="new" data-score="94" data-price="1500" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle de suecia, 86-90 rosas 103162395 1500 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle de Suecia, 86-90</h2>
+                <div class="meta">
+                  <span>Rosas</span>
+                  <span>1500 EUR</span>
+                  <span>105 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/103162395/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;103162395&quot;, &quot;address&quot;: &quot;Calle de Suecia, 86-90&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 103162395</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rosas" data-status="new" data-score="94" data-price="1150" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en rosas rosas 111859429 1150 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Rosas</h2>
+                <div class="meta">
+                  <span>Rosas</span>
+                  <span>1150 EUR</span>
+                  <span>90 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111859429/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111859429&quot;, &quot;address&quot;: &quot;Piso en Rosas&quot;, &quot;price_eur&quot;: 1150, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111859429</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas" data-status="new" data-score="94" data-price="1500" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="calle de arcaute rejas 111925291 1500 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle de Arcaute</h2>
+                <div class="meta">
+                  <span>Rejas</span>
+                  <span>1500 EUR</span>
+                  <span>100 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-06</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111925291/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111925291&quot;, &quot;address&quot;: &quot;Calle de Arcaute&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111925291</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rosas" data-status="new" data-score="94" data-price="1290" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle butron rosas 111933116 1290 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Butron</h2>
+                <div class="meta">
+                  <span>Rosas</span>
+                  <span>1290 EUR</span>
+                  <span>100 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-04</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111933116/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111933116&quot;, &quot;address&quot;: &quot;Calle Butron&quot;, &quot;price_eur&quot;: 1290, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111933116</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="94" data-price="1250" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle san herculano canillejas 111961007 1250 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle San Herculano</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1250 EUR</span>
+                  <span>89 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111961007/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111961007&quot;, &quot;address&quot;: &quot;Calle San Herculano&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111961007</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas / Canillejas" data-status="new" data-score="94" data-price="1500" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle alcala, 708 rejas / canillejas 111967070 1500 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Alcala, 708</h2>
+                <div class="meta">
+                  <span>Rejas / Canillejas</span>
+                  <span>1500 EUR</span>
+                  <span>109 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111967070/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111967070&quot;, &quot;address&quot;: &quot;Calle Alcala, 708&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111967070</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas / Plenilunio" data-status="new" data-score="94" data-price="1200" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="piso en rejas rejas / plenilunio 111969844 1200 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Piso en Rejas</h2>
+                <div class="meta">
+                  <span>Rejas / Plenilunio</span>
+                  <span>1200 EUR</span>
+                  <span>75 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111969844/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111969844&quot;, &quot;address&quot;: &quot;Piso en Rejas&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111969844</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1400" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle brasil, noreste torrejon de ardoz 108842159 1400 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Brasil, Noreste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1400 EUR</span>
+                  <span>112 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/108842159/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;108842159&quot;, &quot;address&quot;: &quot;Calle Brasil, Noreste&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 108842159</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1335" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="avenida joan miro, sureste torrejon de ardoz 111705595 1335 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Avenida Joan Miro, Sureste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1335 EUR</span>
+                  <span>65 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-01</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111705595/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111705595&quot;, &quot;address&quot;: &quot;Avenida Joan Miro, Sureste&quot;, &quot;price_eur&quot;: 1335, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111705595</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Fernando de Henares" data-status="new" data-score="94" data-price="1200" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="travesia de montserrat, 12 san fernando de henares 111842466 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Travesia de Montserrat, 12</h2>
+                <div class="meta">
+                  <span>San Fernando de Henares</span>
+                  <span>1200 EUR</span>
+                  <span>65 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-01</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111842466/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111842466&quot;, &quot;address&quot;: &quot;Travesia de Montserrat, 12&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111842466</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1200" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="sureste, soto del henares torrejon de ardoz 111928101 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Sureste, Soto del Henares</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1200 EUR</span>
+                  <span>69 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-03</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111928101/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111928101&quot;, &quot;address&quot;: &quot;Sureste, Soto del Henares&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111928101</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1270" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="calle juan gris, sureste torrejon de ardoz 111928236 1270 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Juan Gris, Sureste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1270 EUR</span>
+                  <span>71 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-05</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111928236/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111928236&quot;, &quot;address&quot;: &quot;Calle Juan Gris, Sureste&quot;, &quot;price_eur&quot;: 1270, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111928236</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1250" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle encina, sureste torrejon de ardoz 111931724 1250 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Encina, Sureste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1250 EUR</span>
+                  <span>90 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-03</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111931724/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111931724&quot;, &quot;address&quot;: &quot;Calle Encina, Sureste&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 111931724</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1390" data-bedrooms="2" data-urgent="1" data-seen-today="1" data-search="calle mariano benlliure, 1, sureste torrejon de ardoz 94715228 1390 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle Mariano Benlliure, 1, Sureste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1390 EUR</span>
+                  <span>83 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/94715228/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;94715228&quot;, &quot;address&quot;: &quot;Calle Mariano Benlliure, 1, Sureste&quot;, &quot;price_eur&quot;: 1390, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 94715228</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="94" data-price="1300" data-bedrooms="3" data-urgent="1" data-seen-today="1" data-search="calle del rio guadiana, 10, noreste torrejon de ardoz 99152140 1300 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">94</div>
+              <div class="main">
+                <h2>Calle del Rio Guadiana, 10, Noreste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1300 EUR</span>
+                  <span>110 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/99152140/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;99152140&quot;, &quot;address&quot;: &quot;Calle del Rio Guadiana, 10, Noreste&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;94&quot;}'>Copiar</button>
+                  <span>Ref. 99152140</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Coslada" data-status="new" data-score="88" data-price="1100" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="la espinilla, coslada coslada 111628146 1100 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>La Espinilla, Coslada</h2>
+                <div class="meta">
+                  <span>Coslada</span>
+                  <span>1100 EUR</span>
+                  <span>83 m2</span>
+                  <span>3 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111628146/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111628146&quot;, &quot;address&quot;: &quot;La Espinilla, Coslada&quot;, &quot;price_eur&quot;: 1100, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 111628146</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Simancas / MadBit" data-status="new" data-score="88" data-price="1500" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle de fernando vii, 13 simancas / madbit 186987712 1500 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle de Fernando VII, 13</h2>
+                <div class="meta">
+                  <span>Simancas / MadBit</span>
+                  <span>1500 EUR</span>
+                  <span>94 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/vivienda/madrid-capital/aire-acondicionado-calefaccion-parking-jardin-trastero-zona-comunitaria-ascensor-patio-piscina-amueblado/186987712/d" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;186987712&quot;, &quot;address&quot;: &quot;Calle de Fernando VII, 13&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 186987712</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Quintana" data-status="new" data-score="88" data-price="1300" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle sambara quintana cf6208cd-12b0-4e65-941c-1c41f2aa6c76 1300 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle Sambara</h2>
+                <div class="meta">
+                  <span>Quintana</span>
+                  <span>1300 EUR</span>
+                  <span>65 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/vivienda/madrid-capital/aire-acondicionado-terraza-ascensor-se-aceptan-mascotas-no-amueblado/190144271/d" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;cf6208cd-12b0-4e65-941c-1c41f2aa6c76&quot;, &quot;address&quot;: &quot;Calle Sambara&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. cf6208cd-12b0-4e65-941c-1c41f2aa6c76</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="88" data-price="1065" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle la iliada 3 canillejas iliada-3-canillejas-1065 1065 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle la Iliada 3</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1065 EUR</span>
+                  <span>75 m2</span>
+                  <span>3 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://catala.habitaclia.com/lloguer-pisos-canillejas-madrid.htm" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Habitaclia&quot;, &quot;ref&quot;: &quot;iliada-3-canillejas-1065&quot;, &quot;address&quot;: &quot;Calle la Iliada 3&quot;, &quot;price_eur&quot;: 1065, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. iliada-3-canillejas-1065</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas / Plenilunio" data-status="new" data-score="88" data-price="1400" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="rejas, calle pirra aprox. rejas / plenilunio 38368-111756280 1400 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Rejas, calle Pirra aprox.</h2>
+                <div class="meta">
+                  <span>Rejas / Plenilunio</span>
+                  <span>1400 EUR</span>
+                  <span>88 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-24</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.yaencontre.com/alquiler/piso/inmueble-38368-111756280" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Yaencontre&quot;, &quot;ref&quot;: &quot;38368-111756280&quot;, &quot;address&quot;: &quot;Rejas, calle Pirra aprox.&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 38368-111756280</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Canillejas" data-status="new" data-score="88" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle del nectar, 31 canillejas 105556687 1200 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable, nuevo">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle del Nectar, 31</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1200 EUR</span>
+                  <span>70 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-04</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/105556687/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;105556687&quot;, &quot;address&quot;: &quot;Calle del Nectar, 31&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 105556687</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Rejas" data-status="new" data-score="88" data-price="1400" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle de pirra rejas 111756280 1400 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle de Pirra</h2>
+                <div class="meta">
+                  <span>Rejas</span>
+                  <span>1400 EUR</span>
+                  <span>88 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-24</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111756280/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111756280&quot;, &quot;address&quot;: &quot;Calle de Pirra&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 111756280</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="88" data-price="1410" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle valle del cabriel, suroeste torrejon de ardoz 110606202 1410 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable, nuevo">
+              <div class="score">88</div>
+              <div class="main">
+                <h2>Calle Valle del Cabriel, Suroeste</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1410 EUR</span>
+                  <span>84 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, requisitos duros, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/110606202/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;110606202&quot;, &quot;address&quot;: &quot;Calle Valle del Cabriel, Suroeste&quot;, &quot;price_eur&quot;: 1410, &quot;score&quot;: &quot;88&quot;}'>Copiar</button>
+                  <span>Ref. 110606202</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Barajas" data-status="new" data-score="86" data-price="1450" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle timón, 31 barajas 276892 1450 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Timón, 31</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1450 EUR</span>
+                  <span>95 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-04-07</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276892&quot;, &quot;address&quot;: &quot;CALLE Timón, 31&quot;, &quot;price_eur&quot;: 1450, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 276892</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Villaverde" data-status="new" data-score="86" data-price="1000" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle parvillas bajas, 41 villaverde 272628 1000 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Parvillas Bajas, 41</h2>
+                <div class="meta">
+                  <span>Villaverde</span>
+                  <span>1000 EUR</span>
+                  <span>68 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-10</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;272628&quot;, &quot;address&quot;: &quot;CALLE Parvillas Bajas, 41&quot;, &quot;price_eur&quot;: 1000, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 272628</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Ciudad Lineal" data-status="new" data-score="86" data-price="1300" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle esteban collantes, 57 ciudad lineal 277211 1300 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Esteban Collantes, 57</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1300 EUR</span>
+                  <span>84 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-06</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277211&quot;, &quot;address&quot;: &quot;CALLE Esteban Collantes, 57&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 277211</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Hortaleza" data-status="new" data-score="86" data-price="1000" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle valdecaleras, 3 hortaleza 268089 1000 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Valdecaleras, 3</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1000 EUR</span>
+                  <span>49 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-23</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;268089&quot;, &quot;address&quot;: &quot;CALLE Valdecaleras, 3&quot;, &quot;price_eur&quot;: 1000, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 268089</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Hortaleza" data-status="new" data-score="86" data-price="1200" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle vélez rubio, 123 hortaleza 274952 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Vélez Rubio, 123</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1200 EUR</span>
+                  <span>68 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-01</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;274952&quot;, &quot;address&quot;: &quot;CALLE Vélez Rubio, 123&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 274952</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Hortaleza" data-status="new" data-score="86" data-price="1352" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="avda fco javier sáenz de oiza, 230 hortaleza 275044 1352 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>AVDA Fco Javier Sáenz de Oiza, 230</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1352 EUR</span>
+                  <span>74 m2</span>
+                  <span>3 hab</span>
+                  <span>2025-10-17</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;275044&quot;, &quot;address&quot;: &quot;AVDA Fco Javier Sáenz de Oiza, 230&quot;, &quot;price_eur&quot;: 1352, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 275044</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Barajas" data-status="new" data-score="86" data-price="1000" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle zodíaco, 30 barajas 272205 1000 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Zodíaco, 30</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1000 EUR</span>
+                  <span>52 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-30</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;272205&quot;, &quot;address&quot;: &quot;CALLE Zodíaco, 30&quot;, &quot;price_eur&quot;: 1000, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 272205</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Blas-Canillejas" data-status="new" data-score="86" data-price="1900" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle yécora, 49 san blas-canillejas 277140 1900 zona cercana, zona muy fuerte, precio alto, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Yécora, 49</h2>
+                <div class="meta">
+                  <span>San Blas-Canillejas</span>
+                  <span>1900 EUR</span>
+                  <span>89 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-15</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio alto, habitaciones ok, 3 habitaciones, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277140&quot;, &quot;address&quot;: &quot;CALLE Yécora, 49&quot;, &quot;price_eur&quot;: 1900, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 277140</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Blas-Canillejas" data-status="new" data-score="86" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle aquitania, 33 san blas-canillejas 277170 1200 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Aquitania, 33</h2>
+                <div class="meta">
+                  <span>San Blas-Canillejas</span>
+                  <span>1200 EUR</span>
+                  <span>57 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-19</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277170&quot;, &quot;address&quot;: &quot;CALLE Aquitania, 33&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 277170</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="San Blas-Canillejas" data-status="new" data-score="86" data-price="1450" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle pirra, 14 san blas-canillejas 277199 1450 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE Pirra, 14</h2>
+                <div class="meta">
+                  <span>San Blas-Canillejas</span>
+                  <span>1450 EUR</span>
+                  <span>77 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-02</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277199&quot;, &quot;address&quot;: &quot;CALLE Pirra, 14&quot;, &quot;price_eur&quot;: 1450, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 277199</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Torrejon de Ardoz" data-status="new" data-score="86" data-price="1100" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="londres / juncal, torrejon torrejon de ardoz torrejon-londres-juncal-1100 1100 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>Londres / Juncal, Torrejon</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1100 EUR</span>
+                  <span>76 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-02</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://francaise.habitaclia.com/location-appartements-torrejon_de_ardoz.htm" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Habitaclia&quot;, &quot;ref&quot;: &quot;torrejon-londres-juncal-1100&quot;, &quot;address&quot;: &quot;Londres / Juncal, Torrejon&quot;, &quot;price_eur&quot;: 1100, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. torrejon-londres-juncal-1100</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Ciudad Lineal" data-status="new" data-score="86" data-price="1150" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle san lamberto, 3 ciudad lineal 269690 1150 zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">86</div>
+              <div class="main">
+                <h2>CALLE San Lamberto, 3</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1150 EUR</span>
+                  <span>74 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-05-27</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;269690&quot;, &quot;address&quot;: &quot;CALLE San Lamberto, 3&quot;, &quot;price_eur&quot;: 1150, &quot;score&quot;: &quot;86&quot;}'>Copiar</button>
+                  <span>Ref. 269690</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Hortaleza" data-status="new" data-score="82" data-price="1700" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle oña, 7 hortaleza 273599 1700 zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">82</div>
+              <div class="main">
+                <h2>CALLE Oña, 7</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1700 EUR</span>
+                  <span>91 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-02</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;273599&quot;, &quot;address&quot;: &quot;CALLE Oña, 7&quot;, &quot;price_eur&quot;: 1700, &quot;score&quot;: &quot;82&quot;}'>Copiar</button>
+                  <span>Ref. 273599</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Villaverde" data-status="new" data-score="81" data-price="1250" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle calcio, 18 villaverde 276960 1250 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">81</div>
+              <div class="main">
+                <h2>CALLE Calcio, 18</h2>
+                <div class="meta">
+                  <span>Villaverde</span>
+                  <span>1250 EUR</span>
+                  <span>64 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-04-21</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276960&quot;, &quot;address&quot;: &quot;CALLE Calcio, 18&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;81&quot;}'>Copiar</button>
+                  <span>Ref. 276960</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Hortaleza" data-status="new" data-score="79" data-price="1600" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="ctra canillas, 74 hortaleza 277169 1600 zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">79</div>
+              <div class="main">
+                <h2>CTRA Canillas, 74</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1600 EUR</span>
+                  <span>105 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-19</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277169&quot;, &quot;address&quot;: &quot;CTRA Canillas, 74&quot;, &quot;price_eur&quot;: 1600, &quot;score&quot;: &quot;79&quot;}'>Copiar</button>
+                  <span>Ref. 277169</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Barajas" data-status="new" data-score="77" data-price="1165" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="casco historico barajas, av. logrono barajas barajas-av-logrono-1165 1165 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">77</div>
+              <div class="main">
+                <h2>Casco Historico Barajas, Av. Logrono</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1165 EUR</span>
+                  <span>50 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.habitaclia.com/alquiler-distrito_barajas-madrid.htm" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Habitaclia&quot;, &quot;ref&quot;: &quot;barajas-av-logrono-1165&quot;, &quot;address&quot;: &quot;Casco Historico Barajas, Av. Logrono&quot;, &quot;price_eur&quot;: 1165, &quot;score&quot;: &quot;77&quot;}'>Copiar</button>
+                  <span>Ref. barajas-av-logrono-1165</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing good" data-district="Ciudad Lineal" data-status="new" data-score="76" data-price="1450" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle juan de arolas, 1 ciudad lineal 276940 1450 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, antiguo">
+              <div class="score">76</div>
+              <div class="main">
+                <h2>CALLE Juan de Arolas, 1</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1450 EUR</span>
+                  <span>61 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-04-15</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276940&quot;, &quot;address&quot;: &quot;CALLE Juan de Arolas, 1&quot;, &quot;price_eur&quot;: 1450, &quot;score&quot;: &quot;76&quot;}'>Copiar</button>
+                  <span>Ref. 276940</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Ciudad Lineal" data-status="new" data-score="74" data-price="1500" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle rafael bergamín, 6 ciudad lineal 260228 1500 zona cercana, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">74</div>
+              <div class="main">
+                <h2>CALLE Rafael Bergamín, 6</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1500 EUR</span>
+                  <span>70 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-04</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;260228&quot;, &quot;address&quot;: &quot;CALLE Rafael Bergamín, 6&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;74&quot;}'>Copiar</button>
+                  <span>Ref. 260228</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="72" data-price="1500" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle corozal, 4 hortaleza 277111 1500 zona cercana, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">72</div>
+              <div class="main">
+                <h2>CALLE Corozal, 4</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1500 EUR</span>
+                  <span>60 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-04</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277111&quot;, &quot;address&quot;: &quot;CALLE Corozal, 4&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;72&quot;}'>Copiar</button>
+                  <span>Ref. 277111</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Simancas" data-status="new" data-score="70" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="loft duplex en simancas simancas 110489910 1200 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Loft duplex en Simancas</h2>
+                <div class="meta">
+                  <span>Simancas</span>
+                  <span>1200 EUR</span>
+                  <span>120 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/110489910/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;110489910&quot;, &quot;address&quot;: &quot;Loft duplex en Simancas&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 110489910</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Rejas" data-status="new" data-score="70" data-price="1300" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="piso en rejas rejas 97142344 1300 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Piso en Rejas</h2>
+                <div class="meta">
+                  <span>Rejas</span>
+                  <span>1300 EUR</span>
+                  <span>75 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/97142344/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;97142344&quot;, &quot;address&quot;: &quot;Piso en Rejas&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 97142344</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Rejas / Plenilunio" data-status="new" data-score="70" data-price="1300" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle de pirra, 44 rejas / plenilunio 188712200 1300 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Calle de Pirra, 44</h2>
+                <div class="meta">
+                  <span>Rejas / Plenilunio</span>
+                  <span>1300 EUR</span>
+                  <span>75 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/vivienda/madrid-capital/aire-acondicionado-calefaccion-parking-terraza-zona-comunitaria-ascensor-amueblado-piscina/188712200/d" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;188712200&quot;, &quot;address&quot;: &quot;Calle de Pirra, 44&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 188712200</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Rejas / Plenilunio" data-status="new" data-score="70" data-price="1390" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="duplex calle deyanira 55 rejas / plenilunio deyanira-55-rejas 1390 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Duplex Calle Deyanira 55</h2>
+                <div class="meta">
+                  <span>Rejas / Plenilunio</span>
+                  <span>1390 EUR</span>
+                  <span>130 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://catala.habitaclia.com/lloguer-pisos-rejas-madrid.htm" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Habitaclia&quot;, &quot;ref&quot;: &quot;deyanira-55-rejas&quot;, &quot;address&quot;: &quot;Duplex Calle Deyanira 55&quot;, &quot;price_eur&quot;: 1390, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. deyanira-55-rejas</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Simancas / San Blas" data-status="new" data-score="70" data-price="1300" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="piso en simancas simancas / san blas 2804-019018 1300 zona cercana, precio dentro, habitaciones ok, accesibilidad dudosa, telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Piso en Simancas</h2>
+                <div class="meta">
+                  <span>Simancas / San Blas</span>
+                  <span>1300 EUR</span>
+                  <span>70 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesibilidad dudosa, telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-san_blas_simancas-65836160890_109200/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;2804-019018&quot;, &quot;address&quot;: &quot;Piso en Simancas&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 2804-019018</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Arcos / San Blas" data-status="new" data-score="70" data-price="1050" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="piso en arcos arcos / san blas 2814-030023 1050 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad dudosa, telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Piso en Arcos</h2>
+                <div class="meta">
+                  <span>Arcos / San Blas</span>
+                  <span>1050 EUR</span>
+                  <span>62 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-07</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad dudosa, telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-arcos-65838756275_109200/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;2814-030023&quot;, &quot;address&quot;: &quot;Piso en Arcos&quot;, &quot;price_eur&quot;: 1050, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 2814-030023</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Simancas / San Blas" data-status="new" data-score="70" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="duplex en simancas simancas / san blas 8080_a 1200 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesibilidad dudosa, telefono visible, requisitos duros, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Duplex en Simancas</h2>
+                <div class="meta">
+                  <span>Simancas / San Blas</span>
+                  <span>1200 EUR</span>
+                  <span>120 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-24</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, amplio para 3, accesibilidad dudosa, telefono visible, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/duplex-san_blas_simancas-60839939555_102200/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;8080_A&quot;, &quot;address&quot;: &quot;Duplex en Simancas&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 8080_A</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Rosas" data-status="new" data-score="70" data-price="1290" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle marsella rosas 111789863 1290 zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Calle Marsella</h2>
+                <div class="meta">
+                  <span>Rosas</span>
+                  <span>1290 EUR</span>
+                  <span>70 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111789863/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111789863&quot;, &quot;address&quot;: &quot;Calle Marsella&quot;, &quot;price_eur&quot;: 1290, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 111789863</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Coslada" data-status="new" data-score="70" data-price="1500" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="calle puerto de valencia, 4, el puerto coslada 111838827 1500 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable, nuevo">
+              <div class="score">70</div>
+              <div class="main">
+                <h2>Calle Puerto de Valencia, 4, El Puerto</h2>
+                <div class="meta">
+                  <span>Coslada</span>
+                  <span>1500 EUR</span>
+                  <span>110 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, temporalidad, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111838827/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111838827&quot;, &quot;address&quot;: &quot;Calle Puerto de Valencia, 4, El Puerto&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;70&quot;}'>Copiar</button>
+                  <span>Ref. 111838827</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Barajas" data-status="new" data-score="69" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle tirvia, 6 barajas 277187 1200 zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">69</div>
+              <div class="main">
+                <h2>CALLE Tirvia, 6</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1200 EUR</span>
+                  <span>49 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-26</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277187&quot;, &quot;address&quot;: &quot;CALLE Tirvia, 6&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;69&quot;}'>Copiar</button>
+                  <span>Ref. 277187</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Vicalvaro" data-status="new" data-score="69" data-price="950" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle huerta del convento, 10 vicalvaro 269903 950 zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">69</div>
+              <div class="main">
+                <h2>CALLE Huerta del Convento, 10</h2>
+                <div class="meta">
+                  <span>Vicalvaro</span>
+                  <span>950 EUR</span>
+                  <span>36 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-04</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;269903&quot;, &quot;address&quot;: &quot;CALLE Huerta del Convento, 10&quot;, &quot;price_eur&quot;: 950, &quot;score&quot;: &quot;69&quot;}'>Copiar</button>
+                  <span>Ref. 269903</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Ciudad Lineal" data-status="new" data-score="67" data-price="1600" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle antonio calvo, 2 ciudad lineal 274678 1600 zona cercana, precio alto, habitaciones ok, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">67</div>
+              <div class="main">
+                <h2>CALLE Antonio Calvo, 2</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1600 EUR</span>
+                  <span>103 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-25</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;274678&quot;, &quot;address&quot;: &quot;CALLE Antonio Calvo, 2&quot;, &quot;price_eur&quot;: 1600, &quot;score&quot;: &quot;67&quot;}'>Copiar</button>
+                  <span>Ref. 274678</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Simancas / San Blas" data-status="new" data-score="65" data-price="1000" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="piso en simancas simancas / san blas 2001-20010001-1932 1000 zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable">
+              <div class="score">65</div>
+              <div class="main">
+                <h2>Piso en Simancas</h2>
+                <div class="meta">
+                  <span>Simancas / San Blas</span>
+                  <span>1000 EUR</span>
+                  <span>48 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-san_blas_simancas28037-65003214052_100500/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;2001-20010001-1932&quot;, &quot;address&quot;: &quot;Piso en Simancas&quot;, &quot;price_eur&quot;: 1000, &quot;score&quot;: &quot;65&quot;}'>Copiar</button>
+                  <span>Ref. 2001-20010001-1932</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="61" data-price="1025" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle lópez de hoyos, 371 hortaleza 277110 1025 zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesible/bajo/ascensor, sin telefono visible">
+              <div class="score">61</div>
+              <div class="main">
+                <h2>CALLE López de Hoyos, 371</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1025 EUR</span>
+                  <span>43 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-06-04</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesible/bajo/ascensor, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277110&quot;, &quot;address&quot;: &quot;CALLE López de Hoyos, 371&quot;, &quot;price_eur&quot;: 1025, &quot;score&quot;: &quot;61&quot;}'>Copiar</button>
+                  <span>Ref. 277110</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="El Canaveral / Vicalvaro" data-status="new" data-score="61" data-price="1021" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle tolerancia, s/n el canaveral / vicalvaro 23491068 1021 fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">61</div>
+              <div class="main">
+                <h2>Calle Tolerancia, s/n</h2>
+                <div class="meta">
+                  <span>El Canaveral / Vicalvaro</span>
+                  <span>1021 EUR</span>
+                  <span>53 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-22</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-el_canaveral-6424011518_109700/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;23491068&quot;, &quot;address&quot;: &quot;Calle Tolerancia, s/n&quot;, &quot;price_eur&quot;: 1021, &quot;score&quot;: &quot;61&quot;}'>Copiar</button>
+                  <span>Ref. 23491068</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="El Canaveral / Vicalvaro" data-status="new" data-score="61" data-price="1100" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="calle tolerancia, s/n el canaveral / vicalvaro 23491070 1100 fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">61</div>
+              <div class="main">
+                <h2>Calle Tolerancia, s/n</h2>
+                <div class="meta">
+                  <span>El Canaveral / Vicalvaro</span>
+                  <span>1100 EUR</span>
+                  <span>56 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-22</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.pisos.com/alquilar/piso-el_canaveral-6439312943_109700/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Pisos.com&quot;, &quot;ref&quot;: &quot;23491070&quot;, &quot;address&quot;: &quot;Calle Tolerancia, s/n&quot;, &quot;price_eur&quot;: 1100, &quot;score&quot;: &quot;61&quot;}'>Copiar</button>
+                  <span>Ref. 23491070</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Torrejon de Ardoz" data-status="new" data-score="60" data-price="1500" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="noreste, torrejon torrejon de ardoz 111426231 1500 zona cercana, precio dentro, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">60</div>
+              <div class="main">
+                <h2>Noreste, Torrejon</h2>
+                <div class="meta">
+                  <span>Torrejon de Ardoz</span>
+                  <span>1500 EUR</span>
+                  <span>120 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-18</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, amplio para 3, accesibilidad dudosa, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111426231/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111426231&quot;, &quot;address&quot;: &quot;Noreste, Torrejon&quot;, &quot;price_eur&quot;: 1500, &quot;score&quot;: &quot;60&quot;}'>Copiar</button>
+                  <span>Ref. 111426231</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="59" data-price="1550" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle maría de portugal, 44 hortaleza 260250 1550 zona cercana, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">59</div>
+              <div class="main">
+                <h2>CALLE María de Portugal, 44</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1550 EUR</span>
+                  <span>76 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-05</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;260250&quot;, &quot;address&quot;: &quot;CALLE María de Portugal, 44&quot;, &quot;price_eur&quot;: 1550, &quot;score&quot;: &quot;59&quot;}'>Copiar</button>
+                  <span>Ref. 260250</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="59" data-price="2400" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle maría mercedes de borbón, 292 hortaleza 272373 2400 zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
+              <div class="score">59</div>
+              <div class="main">
+                <h2>CALLE María Mercedes de Borbón, 292</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>2400 EUR</span>
+                  <span>111 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-06-12</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;272373&quot;, &quot;address&quot;: &quot;CALLE María Mercedes de Borbón, 292&quot;, &quot;price_eur&quot;: 2400, &quot;score&quot;: &quot;59&quot;}'>Copiar</button>
+                  <span>Ref. 272373</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Canillejas" data-status="new" data-score="59" data-price="1175" data-bedrooms="3" data-urgent="0" data-seen-today="1" data-search="piso en canillejas canillejas 111952034 1175 zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad dudosa, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable, nuevo">
+              <div class="score">59</div>
+              <div class="main">
+                <h2>Piso en Canillejas</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1175 EUR</span>
+                  <span>68 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-06</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, precio fuerte, habitaciones ok, 3 habitaciones, accesibilidad dudosa, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111952034/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111952034&quot;, &quot;address&quot;: &quot;Piso en Canillejas&quot;, &quot;price_eur&quot;: 1175, &quot;score&quot;: &quot;59&quot;}'>Copiar</button>
+                  <span>Ref. 111952034</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Canillejas" data-status="new" data-score="56" data-price="1350" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="piso con ascensor en calle alcala canillejas 190181191 1350 zona cercana, zona muy fuerte, precio dentro, habitaciones ok, justo de metros, accesibilidad dudosa, sin telefono visible, nuevo">
+              <div class="score">56</div>
+              <div class="main">
+                <h2>Piso con ascensor en Calle Alcala</h2>
+                <div class="meta">
+                  <span>Canillejas</span>
+                  <span>1350 EUR</span>
+                  <span>59 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, zona muy fuerte, precio dentro, habitaciones ok, justo de metros, accesibilidad dudosa, sin telefono visible, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/vivienda/madrid-capital/calefaccion-trastero-ascensor-no-amueblado/190181191/d" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;190181191&quot;, &quot;address&quot;: &quot;Piso con ascensor en Calle Alcala&quot;, &quot;price_eur&quot;: 1350, &quot;score&quot;: &quot;56&quot;}'>Copiar</button>
+                  <span>Ref. 190181191</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="54" data-price="1450" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="avda francisco pi y margall, 31 hortaleza 276308 1450 zona cercana, precio dentro, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, antiguo">
+              <div class="score">54</div>
+              <div class="main">
+                <h2>AVDA Francisco Pi y Margall, 31</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1450 EUR</span>
+                  <span>59 m2</span>
+                  <span>2 hab</span>
+                  <span>2025-10-15</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276308&quot;, &quot;address&quot;: &quot;AVDA Francisco Pi y Margall, 31&quot;, &quot;price_eur&quot;: 1450, &quot;score&quot;: &quot;54&quot;}'>Copiar</button>
+                  <span>Ref. 276308</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing mid" data-district="Hortaleza" data-status="new" data-score="51" data-price="1200" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle javier del quinto, 4 hortaleza 273116 1200 zona cercana, precio dentro, precio fuerte, pocas habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo">
+              <div class="score">51</div>
+              <div class="main">
+                <h2>CALLE Javier del Quinto, 4</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1200 EUR</span>
+                  <span>60 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-04-30</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, pocas habitaciones, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;273116&quot;, &quot;address&quot;: &quot;CALLE Javier del Quinto, 4&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;51&quot;}'>Copiar</button>
+                  <span>Ref. 273116</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Ciudad Lineal" data-status="new" data-score="49" data-price="1100" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle jazmín, 35 ciudad lineal 275975 1100 zona cercana, precio dentro, precio fuerte, pocas habitaciones, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">49</div>
+              <div class="main">
+                <h2>CALLE Jazmín, 35</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1100 EUR</span>
+                  <span>0 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-06-17</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, pocas habitaciones, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;275975&quot;, &quot;address&quot;: &quot;CALLE Jazmín, 35&quot;, &quot;price_eur&quot;: 1100, &quot;score&quot;: &quot;49&quot;}'>Copiar</button>
+                  <span>Ref. 275975</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Hortaleza" data-status="new" data-score="47" data-price="1250" data-bedrooms="1" data-urgent="0" data-seen-today="1" data-search="calle américo castro, 120 hortaleza 277203 1250 zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, nuevo">
+              <div class="score">47</div>
+              <div class="main">
+                <h2>CALLE Américo Castro, 120</h2>
+                <div class="meta">
+                  <span>Hortaleza</span>
+                  <span>1250 EUR</span>
+                  <span>47 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-07-02</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277203&quot;, &quot;address&quot;: &quot;CALLE Américo Castro, 120&quot;, &quot;price_eur&quot;: 1250, &quot;score&quot;: &quot;47&quot;}'>Copiar</button>
+                  <span>Ref. 277203</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Ciudad Lineal" data-status="new" data-score="43" data-price="1800" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle alcalá, 372 ciudad lineal 277018 1800 zona cercana, precio alto, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, antiguo">
+              <div class="score">43</div>
+              <div class="main">
+                <h2>CALLE Alcalá, 372</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1800 EUR</span>
+                  <span>63 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-05-08</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277018&quot;, &quot;address&quot;: &quot;CALLE Alcalá, 372&quot;, &quot;price_eur&quot;: 1800, &quot;score&quot;: &quot;43&quot;}'>Copiar</button>
+                  <span>Ref. 277018</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Ciudad Lineal" data-status="new" data-score="39" data-price="850" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle mariano díaz alonso, 14 ciudad lineal 277154 850 zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">39</div>
+              <div class="main">
+                <h2>CALLE Mariano Díaz Alonso, 14</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>850 EUR</span>
+                  <span>36 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-06-17</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;277154&quot;, &quot;address&quot;: &quot;CALLE Mariano Díaz Alonso, 14&quot;, &quot;price_eur&quot;: 850, &quot;score&quot;: &quot;39&quot;}'>Copiar</button>
+                  <span>Ref. 277154</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Coslada" data-status="new" data-score="31" data-price="990" data-bedrooms="2" data-urgent="0" data-seen-today="1" data-search="valleaguado, coslada coslada 111560109 990 zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad dudosa, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable">
+              <div class="score">31</div>
+              <div class="main">
+                <h2>Valleaguado, Coslada</h2>
+                <div class="meta">
+                  <span>Coslada</span>
+                  <span>990 EUR</span>
+                  <span>60 m2</span>
+                  <span>2 hab</span>
+                  <span></span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>zona cercana, precio dentro, precio fuerte, habitaciones ok, accesibilidad dudosa, sin telefono visible, temporalidad, requisitos duros, eur/m2 razonable</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/inmueble/111560109/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;111560109&quot;, &quot;address&quot;: &quot;Valleaguado, Coslada&quot;, &quot;price_eur&quot;: 990, &quot;score&quot;: &quot;31&quot;}'>Copiar</button>
+                  <span>Ref. 111560109</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Chamberi" data-status="new" data-score="25" data-price="1200" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle fernandez de los rios, 54 chamberi 269953 1200 fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">25</div>
+              <div class="main">
+                <h2>CALLE Fernandez de los Rios, 54</h2>
+                <div class="meta">
+                  <span>Chamberi</span>
+                  <span>1200 EUR</span>
+                  <span>50 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-06-22</span>
+                  <span>visto 2026-06-29</span>
+                </div>
+                <p>fuera de zona preferida, precio dentro, precio fuerte, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila Comunidad de Madrid&quot;, &quot;ref&quot;: &quot;269953&quot;, &quot;address&quot;: &quot;CALLE Fernandez de los Rios, 54&quot;, &quot;price_eur&quot;: 1200, &quot;score&quot;: &quot;25&quot;}'>Copiar</button>
+                  <span>Ref. 269953</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Barajas" data-status="new" data-score="24" data-price="1400" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle babilonia, 9 barajas 276908 1400 zona cercana, precio dentro, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, antiguo">
+              <div class="score">24</div>
+              <div class="main">
+                <h2>CALLE Babilonia, 9</h2>
+                <div class="meta">
+                  <span>Barajas</span>
+                  <span>1400 EUR</span>
+                  <span>53 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-04-10</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276908&quot;, &quot;address&quot;: &quot;CALLE Babilonia, 9&quot;, &quot;price_eur&quot;: 1400, &quot;score&quot;: &quot;24&quot;}'>Copiar</button>
+                  <span>Ref. 276908</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Ciudad Lineal" data-status="new" data-score="21" data-price="1575" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle general aranaz, 57 ciudad lineal 276841 1575 zona cercana, precio alto, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 caro, antiguo">
+              <div class="score">21</div>
+              <div class="main">
+                <h2>CALLE General Aranaz, 57</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1575 EUR</span>
+                  <span>31 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-03-16</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio alto, habitaciones ok, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 caro, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276841&quot;, &quot;address&quot;: &quot;CALLE General Aranaz, 57&quot;, &quot;price_eur&quot;: 1575, &quot;score&quot;: &quot;21&quot;}'>Copiar</button>
+                  <span>Ref. 276841</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Ciudad Lineal" data-status="new" data-score="14" data-price="1300" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle jazmín, 52 ciudad lineal 276855 1300 zona cercana, precio dentro, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 caro, antiguo">
+              <div class="score">14</div>
+              <div class="main">
+                <h2>CALLE Jazmín, 52</h2>
+                <div class="meta">
+                  <span>Ciudad Lineal</span>
+                  <span>1300 EUR</span>
+                  <span>42 m2</span>
+                  <span>1 hab</span>
+                  <span>2026-03-17</span>
+                  <span>visto 2026-06-30</span>
+                </div>
+                <p>zona cercana, precio dentro, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, eur/m2 caro, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila&quot;, &quot;ref&quot;: &quot;276855&quot;, &quot;address&quot;: &quot;CALLE Jazmín, 52&quot;, &quot;price_eur&quot;: 1300, &quot;score&quot;: &quot;14&quot;}'>Copiar</button>
+                  <span>Ref. 276855</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Chamberi" data-status="new" data-score="2" data-price="1985" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="calle andres mellado, 57 chamberi 277096 1985 fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">2</div>
+              <div class="main">
+                <h2>CALLE Andres Mellado, 57</h2>
+                <div class="meta">
+                  <span>Chamberi</span>
+                  <span>1985 EUR</span>
+                  <span>84 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-05-29</span>
+                  <span>visto 2026-06-29</span>
+                </div>
+                <p>fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila Comunidad de Madrid&quot;, &quot;ref&quot;: &quot;277096&quot;, &quot;address&quot;: &quot;CALLE Andres Mellado, 57&quot;, &quot;price_eur&quot;: 1985, &quot;score&quot;: &quot;2&quot;}'>Copiar</button>
+                  <span>Ref. 277096</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Chamberi" data-status="new" data-score="0" data-price="1800" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle general alvarez de castro, 26 chamberi 274065 1800 fuera de zona preferida, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible">
+              <div class="score">0</div>
+              <div class="main">
+                <h2>CALLE General Alvarez de Castro, 26</h2>
+                <div class="meta">
+                  <span>Chamberi</span>
+                  <span>1800 EUR</span>
+                  <span>71 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-31</span>
+                  <span>visto 2026-06-29</span>
+                </div>
+                <p>fuera de zona preferida, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila Comunidad de Madrid&quot;, &quot;ref&quot;: &quot;274065&quot;, &quot;address&quot;: &quot;CALLE General Alvarez de Castro, 26&quot;, &quot;price_eur&quot;: 1800, &quot;score&quot;: &quot;0&quot;}'>Copiar</button>
+                  <span>Ref. 274065</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+            <article class="listing low" data-district="Chamberi" data-status="new" data-score="0" data-price="1600" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle fernando el catolico, 86 chamberi 277060 1600 fuera de zona preferida, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, antiguo">
+              <div class="score">0</div>
+              <div class="main">
+                <h2>CALLE Fernando el Catolico, 86</h2>
+                <div class="meta">
+                  <span>Chamberi</span>
+                  <span>1600 EUR</span>
+                  <span>69 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-05-20</span>
+                  <span>visto 2026-06-29</span>
+                </div>
+                <p>fuera de zona preferida, precio alto, habitaciones ok, accesibilidad sin confirmar, sin telefono visible, antiguo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://gestiona.comunidad.madrid/gpal_inter/secure/include/viviendapublicada/busqViviendasPublicadasContenedor.jsf" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Plan Alquila Comunidad de Madrid&quot;, &quot;ref&quot;: &quot;277060&quot;, &quot;address&quot;: &quot;CALLE Fernando el Catolico, 86&quot;, &quot;price_eur&quot;: 1600, &quot;score&quot;: &quot;0&quot;}'>Copiar</button>
+                  <span>Ref. 277060</span>
+                  <span>new</span>
+            
+                </div>
+              </div>
+            </article>
+            
+    </section>
+  </main>
+  <script>
+    const filters = {
+      text: document.querySelector('#textFilter'),
+      district: document.querySelector('#districtFilter'),
+      status: document.querySelector('#statusFilter'),
+      score: document.querySelector('#scoreFilter'),
+      price: document.querySelector('#priceFilter'),
+      bedrooms: document.querySelector('#bedroomsFilter'),
+      count: document.querySelector('#visibleCount'),
+      view: 'all',
+    };
+    const listings = [...document.querySelectorAll('.listing')];
+    const viewButtons = [...document.querySelectorAll('button[data-view]')];
+    function applyFilters() {
+      const text = filters.text.value.trim().toLowerCase();
+      const district = filters.district.value;
+      const status = filters.status.value;
+      const score = Number(filters.score.value || 0);
+      const price = Number(filters.price.value || 0);
+      const bedrooms = Number(filters.bedrooms.value || 0);
+      let visible = 0;
+      for (const item of listings) {
+        const itemPrice = Number(item.dataset.price || 0);
+        const itemBedrooms = Number(item.dataset.bedrooms || 0);
+        const viewOk = filters.view === 'all'
+          || (filters.view === 'urgent' && item.dataset.urgent === '1')
+          || (filters.view === 'seenToday' && item.dataset.seenToday === '1')
+          || (filters.view === 'favorite' && item.dataset.status === 'favorite')
+          || (filters.view === 'new' && item.dataset.status === 'new');
+        const ok = viewOk
+          && (!text || item.dataset.search.includes(text))
+          && (!district || item.dataset.district === district)
+          && (!status || item.dataset.status === status)
+          && Number(item.dataset.score || 0) >= score
+          && (!price || (itemPrice && itemPrice <= price))
+          && itemBedrooms >= bedrooms;
+        item.hidden = !ok;
+        if (ok) visible += 1;
+      }
+      filters.count.textContent = visible;
+    }
+    Object.values(filters).forEach((el) => {
+      if (el && el.addEventListener && el.id !== 'visibleCount') el.addEventListener('input', applyFilters);
+    });
+    for (const button of viewButtons) {
+      button.addEventListener('click', () => {
+        filters.view = button.dataset.view;
+        viewButtons.forEach((item) => item.classList.toggle('active', item === button));
+        applyFilters();
+      });
+    }
+    document.addEventListener('click', async (event) => {
+      const messageButton = event.target.closest('button[data-message]');
+      if (messageButton) {
+        await navigator.clipboard?.writeText(messageButton.dataset.message);
+        const label = messageButton.textContent;
+        messageButton.textContent = 'Mensaje copiado';
+        setTimeout(() => messageButton.textContent = label, 1400);
+        return;
+      }
+      const button = event.target.closest('button[data-copy]');
+      if (!button) return;
+      const data = JSON.parse(button.dataset.copy);
+      const text = `${data.score}/100 ${data.address} - ${data.price_eur} EUR - Ref. ${data.ref}`;
+      await navigator.clipboard?.writeText(text);
+      button.textContent = 'Copiado';
+      setTimeout(() => button.textContent = 'Copiar', 1200);
+    });
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest('button[data-command]');
+      if (!button) return;
+      await navigator.clipboard?.writeText(button.dataset.command);
+      const label = button.textContent;
+      button.textContent = 'Comando copiado';
+      setTimeout(() => button.textContent = label, 1400);
+    });
+  </script>
+</body>
+</html>
