@@ -21,91 +21,33 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--ink);
     }
     header {
-      padding: 24px;
+      padding: 16px 14px;
       border-bottom: 1px solid var(--line);
       background: var(--panel);
     }
-    h1 { margin: 0 0 8px; font-size: 24px; }
-    .sub { color: var(--muted); font-size: 14px; }
-    main { max-width: 1520px; margin: 0 auto; padding: 18px; }
-    .workspace {
-      display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
-    }
-    .control-panel {
-      position: sticky;
-      top: 12px;
-      max-height: calc(100vh - 24px);
-      overflow: auto;
-      display: grid;
-      gap: 12px;
-    }
-    .results-panel {
-      min-width: 0;
-    }
-    .results-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-      padding: 10px 12px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-    }
-    .results-head b { font-size: 16px; }
-    .results-head span { color: var(--muted); font-size: 13px; }
+    h1 { margin: 0 0 5px; font-size: 20px; }
+    .sub { color: var(--muted); font-size: 12px; }
+    main { max-width: 760px; margin: 0 auto; padding: 10px; }
     .summary, .filters {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
     }
     .views {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 8px;
-      margin-bottom: 14px;
-    }
-    .board {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(280px, 340px);
-      gap: 8px;
-      margin-bottom: 14px;
+      margin: 0 -12px 10px;
+      padding: 0 12px 2px;
       overflow-x: auto;
-      padding-bottom: 8px;
     }
-    .control-panel .views, .control-panel .filters {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 0;
-    }
-    .control-panel .views {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .control-panel .views button:first-child {
-      grid-column: 1 / -1;
-    }
-    .control-panel .filters {
-      grid-template-columns: 1fr;
-    }
-    .results-panel .board {
-      margin-bottom: 0;
-      grid-auto-columns: minmax(300px, 360px);
-    }
-    .views button, .lane-head {
+    .views button, .status-strip button, .filters-shell summary {
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 8px 10px;
@@ -114,32 +56,35 @@
       cursor: pointer;
       font: inherit;
       font-size: 14px;
+      white-space: nowrap;
     }
-    .lane-column {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 8px;
-      min-height: calc(100vh - 178px);
-      max-height: calc(100vh - 178px);
-      background: #eef2f7;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 8px;
-    }
-    .lane-head {
-      min-height: 50px;
+    .status-strip {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-    }
-    .lane-head b { font-size: 22px; }
-    .lane-cards {
-      display: grid;
-      align-content: start;
       gap: 8px;
-      overflow-y: auto;
-      padding-right: 2px;
+      margin: 0 -12px 10px;
+      padding: 0 12px 2px;
+      overflow-x: auto;
+    }
+    .status-strip button b {
+      margin-left: 4px;
+      font-size: 12px;
+    }
+    .filters-shell {
+      margin-bottom: 10px;
+    }
+    .filters-shell summary {
+      list-style: none;
+      display: block;
+      text-align: center;
+      font-weight: 700;
+    }
+    .filters-shell summary::-webkit-details-marker { display: none; }
+    .filters-shell[open] summary {
+      margin-bottom: 8px;
+    }
+    .filters-shell .filters {
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
     .views button.active {
       border-color: var(--blue);
@@ -151,10 +96,10 @@
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 12px;
+      padding: 10px;
     }
-    .metric b { display: block; font-size: 22px; }
-    .metric span, label { color: var(--muted); font-size: 13px; }
+    .metric b { display: block; font-size: 20px; line-height: 1; }
+    .metric span, label { color: var(--muted); font-size: 11px; }
     label { display: grid; gap: 5px; }
     input, select {
       width: 100%;
@@ -167,14 +112,14 @@
     }
     .listing {
       display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 10px;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 9px;
       background: var(--panel);
       border: 1px solid var(--line);
       border-left: 5px solid var(--muted);
       border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 0;
+      padding: 9px;
+      margin-bottom: 8px;
     }
     .listing[hidden] { display: none; }
     .listing.good { border-left-color: var(--green); }
@@ -182,21 +127,30 @@
     .listing.mid { border-left-color: var(--amber); }
     .listing.low { border-left-color: var(--red); }
     .score {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border-radius: 8px;
       background: #eef2f7;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
     }
-    h2 { margin: 0 0 8px; font-size: 15px; }
-    .meta, .actions {
+    h2 { margin: 0 0 7px; font-size: 15px; line-height: 1.25; }
+    .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       align-items: center;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      align-items: center;
+      overflow-x: auto;
+      margin: 0 -4px;
+      padding: 1px 4px 2px;
     }
     .contact {
       margin: 8px 0;
@@ -207,10 +161,11 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 5px 7px;
-      font-size: 13px;
+      font-size: 12px;
       background: #fafafa;
       text-decoration: none;
       color: var(--ink);
+      white-space: nowrap;
     }
     .actions a { color: var(--blue); }
     .actions button { cursor: pointer; }
@@ -241,11 +196,11 @@
     }
     .message-panel {
       position: fixed;
-      inset: auto 16px 16px auto;
-      width: min(520px, calc(100vw - 32px));
+      inset: auto 0 0 0;
+      width: auto;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 8px 8px 0 0;
       box-shadow: 0 18px 48px rgba(15, 23, 42, 0.18);
       padding: 12px;
       display: grid;
@@ -285,62 +240,49 @@
       font: inherit;
     }
     p { color: var(--muted); margin: 10px 0; }
-    @media (max-width: 640px) {
-      header { padding: 18px; }
-      main { padding: 12px; }
-      .workspace { display: block; }
-      .control-panel {
-        position: static;
-        max-height: none;
-        overflow: visible;
-        margin-bottom: 12px;
+    @media (min-width: 780px) {
+      header { padding: 20px 24px; }
+      main { max-width: 920px; padding: 16px; }
+      .summary { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .views, .status-strip { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+      .listing { grid-template-columns: 58px minmax(0, 1fr); padding: 12px; }
+      .score { width: 48px; height: 48px; }
+      .message-panel {
+        inset: auto 16px 16px auto;
+        width: min(520px, calc(100vw - 32px));
+        border-radius: 8px;
       }
-      .results-head { display: none; }
-      .summary, .filters { grid-template-columns: 1fr; }
-      .views button { flex: 1 1 130px; }
-      .board { grid-auto-columns: minmax(260px, 88vw); }
-      .lane-column {
-        min-height: 240px;
-        max-height: none;
-      }
-      .lane-cards { overflow: visible; }
-      .listing { grid-template-columns: 1fr; gap: 10px; }
-      .score { width: 48px; height: 48px; font-size: 18px; }
-      .actions span, .actions a, .actions button { flex: 1 1 120px; text-align: center; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Radar pisos 28022</h1>
-    <div class="sub">Alquiler cerca de Plenilunio o con transporte razonable - generado 2026-07-09 00:59</div>
+    <div class="sub">Alquiler cerca de Plenilunio o con transporte razonable - generado 2026-07-09 01:04</div>
   </header>
   <main>
     <section class="summary">
       <div class="metric"><b id="visibleCount">208</b><span>anuncios visibles</span></div>
-      <div class="metric"><b>208</b><span>anuncios cargados</span></div>
       <div class="metric"><b>0</b><span>vistos hoy</span></div>
       <div class="metric"><b>44</b><span>llamar ya</span></div>
       <div class="metric"><b>0</b><span>favoritos</span></div>
-      <div class="metric"><b>1.500 €</b><span>presupuesto maximo</span></div>
     </section>
-    <div class="workspace">
-      <aside class="control-panel" aria-label="Controles">
-        <section class="views" aria-label="Vistas rapidas">
-          <button type="button" class="active" data-view="all">Todos</button>
-          <button type="button" data-view="urgent">Llamar ya</button>
-          <button type="button" data-view="seenToday">Vistos hoy</button>
-          <button type="button" data-view="favorite">Favoritos</button>
-          <button type="button" data-view="new">Nuevos</button>
-        </section>
-        <section class="filters" aria-label="Filtros">
-          <label>Buscar
-            <input id="textFilter" type="search" placeholder="direccion, ref, motivo">
-          </label>
-          <label>Distrito
-            <select id="districtFilter">
-              <option value="">Todos</option>
-              <option value="Adelfas / Retiro">Adelfas / Retiro</option>
+    <section class="views" aria-label="Vistas rapidas">
+      <button type="button" class="active" data-view="all">Todos</button>
+      <button type="button" data-view="urgent">Llamar ya</button>
+      <button type="button" data-view="favorite">Favoritos</button>
+      <button type="button" data-view="new">Nuevos</button>
+    </section>
+    <details class="filters-shell">
+      <summary>Filtros</summary>
+      <section class="filters" aria-label="Filtros">
+        <label>Buscar
+          <input id="textFilter" type="search" placeholder="direccion, ref, motivo">
+        </label>
+        <label>Distrito
+          <select id="districtFilter">
+            <option value="">Todos</option>
+            <option value="Adelfas / Retiro">Adelfas / Retiro</option>
 <option value="Alcobendas">Alcobendas</option>
 <option value="Arcos / San Blas">Arcos / San Blas</option>
 <option value="Arguelles">Arguelles</option>
@@ -399,52 +341,51 @@
 <option value="Vicalvaro">Vicalvaro</option>
 <option value="Villa de Vallecas / Casco">Villa de Vallecas / Casco</option>
 <option value="Villaverde">Villaverde</option>
-            </select>
-          </label>
-          <label>Estado
-            <select id="statusFilter">
-              <option value="">Todos</option>
-              <option value="contacted">contacted</option>
-<option value="discarded">discarded</option>
-<option value="doubtful">doubtful</option>
-<option value="favorite">favorite</option>
-<option value="new">new</option>
-<option value="scheduled_visit">scheduled_visit</option>
-<option value="to_call">to_call</option>
-<option value="unavailable">unavailable</option>
-<option value="waiting_reply">waiting_reply</option>
-            </select>
-          </label>
-          <label>Score minimo
-            <input id="scoreFilter" type="number" min="0" max="100" value="0">
-          </label>
-          <label>Precio maximo
-            <input id="priceFilter" type="number" min="0" value="1500">
-          </label>
-          <label>Habitaciones minimas
-            <input id="bedroomsFilter" type="number" min="0" value="2">
-          </label>
-          
+          </select>
+        </label>
+        <label>Estado
+          <select id="statusFilter">
+            <option value="">Todos</option>
+            <option value="contacted">Contactado</option>
+<option value="discarded">Descartado</option>
+<option value="doubtful">Dudoso</option>
+<option value="favorite">Favorito</option>
+<option value="new">Nuevo</option>
+<option value="scheduled_visit">Visita</option>
+<option value="to_call">Llamar</option>
+<option value="unavailable">No disponible</option>
+<option value="waiting_reply">Esperando</option>
+          </select>
+        </label>
+        <label>Score minimo
+          <input id="scoreFilter" type="number" min="0" max="100" value="0">
+        </label>
+        <label>Precio maximo
+          <input id="priceFilter" type="number" min="0" value="1500">
+        </label>
+        <label>Habitaciones minimas
+          <input id="bedroomsFilter" type="number" min="0" value="2">
+        </label>
+        
       <label>PIN gestion
         <input id="statePin" type="password" inputmode="numeric" autocomplete="off" placeholder="PIN">
       </label>
 
-        </section>
-      </aside>
-      <section class="results-panel" aria-label="Tablero de candidatos">
-        <div class="results-head">
-          <b>Tablero de candidatos</b>
-          <span>208 anuncios</span>
-        </div>
-        <section class="board" id="board" aria-label="Tablero de estados">
-          
-        <section class="lane-column" data-lane="new">
-          <button type="button" class="lane-head" data-status-jump="new">
-            <span>Nuevo</span>
-            <b data-lane-count="new">0</b>
-          </button>
-          <div class="lane-cards">
-            
+      </section>
+    </details>
+    <section class="status-strip" aria-label="Estados">
+      <button type="button" data-status-jump="new">Nuevo <b data-lane-count="new">0</b></button>
+<button type="button" data-status-jump="to_call">Llamar <b data-lane-count="to_call">0</b></button>
+<button type="button" data-status-jump="contacted">Contactado <b data-lane-count="contacted">0</b></button>
+<button type="button" data-status-jump="doubtful">Dudoso <b data-lane-count="doubtful">0</b></button>
+<button type="button" data-status-jump="waiting_reply">Esperando <b data-lane-count="waiting_reply">0</b></button>
+<button type="button" data-status-jump="favorite">Favorito <b data-lane-count="favorite">0</b></button>
+<button type="button" data-status-jump="scheduled_visit">Visita <b data-lane-count="scheduled_visit">0</b></button>
+<button type="button" data-status-jump="discarded">Descartado <b data-lane-count="discarded">0</b></button>
+<button type="button" data-status-jump="unavailable">No disponible <b data-lane-count="unavailable">0</b></button>
+    </section>
+    <section id="listings" class="listings" aria-label="Candidatos">
+      
             <article class="listing good" data-source="Pisos.com" data-ref="2814-015683" data-district="Rosas / San Blas" data-status="new" data-score="100" data-price="1290" data-bedrooms="3" data-urgent="1" data-seen-today="0" data-search="piso en san blas, rosas rosas / san blas 2814-015683 1290 zona cercana, precio dentro, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, telefono visible, eur/m2 razonable, nuevo">
               <div class="score">100</div>
               <div class="main">
@@ -6180,6 +6121,43 @@
               </div>
             </article>
             
+            <article class="listing mid" data-source="Fotocasa" data-ref="fotocasa-torrejon-3hab-20260708" data-district="Rivas-Vaciamadrid" data-status="discarded" data-score="65" data-price="1600" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="avenida de la democracia, urbanizaciones rivas-vaciamadrid fotocasa-torrejon-3hab-20260708 1600 fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
+              <div class="score">65</div>
+              <div class="main">
+                <h2>Avenida de la Democracia, Urbanizaciones</h2>
+                <div class="meta">
+                  <span>Rivas-Vaciamadrid</span>
+                  <span>1.600 €</span>
+                  <span>107 m2</span>
+                  <span>3 hab</span>
+                  <span>2026-07-08</span>
+                  <span>visto 2026-07-08</span>
+                </div>
+                <p>fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.fotocasa.es/es/alquiler/viviendas/torrejon-de-ardoz/todas-las-zonas/3-habitaciones/l" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;fotocasa-torrejon-3hab-20260708&quot;, &quot;address&quot;: &quot;Avenida de la Democracia, Urbanizaciones&quot;, &quot;price&quot;: &quot;1.600 €&quot;, &quot;score&quot;: &quot;65&quot;}'>Copiar</button>
+                  <button type="button" data-messages='{&quot;whatsapp&quot;: &quot;Hola, te escribo por el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Me interesa para alquiler estable. Queria saber si sigue disponible, condiciones y posibilidad de visita. Gracias.&quot;, &quot;formal&quot;: &quot;Buenos dias, he visto el anuncio de la vivienda en Avenida de la Democracia, Urbanizaciones (1.600 €) y me interesa para alquiler estable. Queria saber si sigue disponible, cuales son las condiciones de entrada y que documentacion necesitan. Si el perfil encaja, me gustaria concertar una visita. Muchas gracias.&quot;, &quot;short&quot;: &quot;Hola, me interesa el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Queria saber si sigue disponible y si se podria visitar. Gracias.&quot;, &quot;questions&quot;: &quot;Hola, me interesa el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Antes de avanzar, queria confirmar si sigue disponible, si tiene ascensor o es bajo, si el contrato es de larga duracion, que requisitos piden y que gastos hay que aportar a la entrada. Gracias.&quot;}'>Mensaje</button>
+                  
+                  <button type="button" data-remote-status="new">Nuevo</button>
+                  <button type="button" data-remote-status="to_call">Llamar</button>
+                  <button type="button" data-remote-status="contacted">Contactado</button>
+                  <button type="button" data-remote-status="doubtful">Dudoso</button>
+                  <button type="button" data-remote-status="waiting_reply">Esperando</button>
+                  <button type="button" data-remote-status="favorite">Favorito</button>
+                  <button type="button" data-remote-status="scheduled_visit">Visita</button>
+                  <button type="button" data-remote-status="discarded">Descartar</button>
+                  <button type="button" data-remote-status="unavailable">No disponible</button>
+                
+                  <span>Ref. fotocasa-torrejon-3hab-20260708</span>
+                  <span class="status-pill" data-status-label>Descartado</span>
+            
+                </div>
+              </div>
+            </article>
+            
             <article class="listing mid" data-source="Plan Alquila" data-ref="274678" data-district="Ciudad Lineal" data-status="new" data-score="63" data-price="1600" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle antonio calvo, 2 ciudad lineal 274678 1600 zona cercana, precio alto, habitaciones ok, amplio para 3, accesibilidad sin confirmar, sin telefono visible, eur/m2 razonable">
               <div class="score">63</div>
               <div class="main">
@@ -7697,6 +7675,43 @@
               </div>
             </article>
             
+            <article class="listing low" data-source="Idealista" data-ref="idealista-alcaniz-temporal-20260709" data-district="Timon / Barajas" data-status="doubtful" data-score="25" data-price="1490" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle alcaniz timon / barajas idealista-alcaniz-temporal-20260709 1490 zona cercana, precio dentro, habitaciones ok, 2 habitaciones justo de metros, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad descartable, nuevo">
+              <div class="score">25</div>
+              <div class="main">
+                <h2>Calle Alcaniz</h2>
+                <div class="meta">
+                  <span>Timon / Barajas</span>
+                  <span>1.490 €</span>
+                  <span>56 m2</span>
+                  <span>2 hab</span>
+                  <span>2026-07-09</span>
+                  <span>visto 2026-07-09</span>
+                </div>
+                <p>zona cercana, precio dentro, habitaciones ok, 2 habitaciones justo de metros, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad descartable, nuevo</p>
+                
+                <div class="actions">
+                  
+                  <a href="https://www.idealista.com/geo/alquiler-viviendas/calle-alcaniz-madrid-madrid/" target="_blank">Abrir fuente</a>
+                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;idealista-alcaniz-temporal-20260709&quot;, &quot;address&quot;: &quot;Calle Alcaniz&quot;, &quot;price&quot;: &quot;1.490 €&quot;, &quot;score&quot;: &quot;25&quot;}'>Copiar</button>
+                  <button type="button" data-messages='{&quot;whatsapp&quot;: &quot;Hola, te escribo por el piso de 1.490 € en Calle Alcaniz. Me interesa para alquiler estable. Queria saber si sigue disponible, condiciones y posibilidad de visita. Gracias.&quot;, &quot;formal&quot;: &quot;Buenos dias, he visto el anuncio de la vivienda en Calle Alcaniz (1.490 €) y me interesa para alquiler estable. Queria saber si sigue disponible, cuales son las condiciones de entrada y que documentacion necesitan. Si el perfil encaja, me gustaria concertar una visita. Muchas gracias.&quot;, &quot;short&quot;: &quot;Hola, me interesa el piso de 1.490 € en Calle Alcaniz. Queria saber si sigue disponible y si se podria visitar. Gracias.&quot;, &quot;questions&quot;: &quot;Hola, me interesa el piso de 1.490 € en Calle Alcaniz. Antes de avanzar, queria confirmar si sigue disponible, si tiene ascensor o es bajo, si el contrato es de larga duracion, que requisitos piden y que gastos hay que aportar a la entrada. Gracias.&quot;}'>Mensaje</button>
+                  
+                  <button type="button" data-remote-status="new">Nuevo</button>
+                  <button type="button" data-remote-status="to_call">Llamar</button>
+                  <button type="button" data-remote-status="contacted">Contactado</button>
+                  <button type="button" data-remote-status="doubtful">Dudoso</button>
+                  <button type="button" data-remote-status="waiting_reply">Esperando</button>
+                  <button type="button" data-remote-status="favorite">Favorito</button>
+                  <button type="button" data-remote-status="scheduled_visit">Visita</button>
+                  <button type="button" data-remote-status="discarded">Descartar</button>
+                  <button type="button" data-remote-status="unavailable">No disponible</button>
+                
+                  <span>Ref. idealista-alcaniz-temporal-20260709</span>
+                  <span class="status-pill" data-status-label>Dudoso</span>
+            
+                </div>
+              </div>
+            </article>
+            
             <article class="listing low" data-source="Plan Alquila" data-ref="276908" data-district="Barajas" data-status="new" data-score="20" data-price="1400" data-bedrooms="1" data-urgent="0" data-seen-today="0" data-search="calle babilonia, 9 barajas 276908 1400 zona cercana, precio dentro, pocas habitaciones, justo de metros, accesibilidad sin confirmar, sin telefono visible, antiguo">
               <div class="score">20</div>
               <div class="main">
@@ -8067,174 +8082,7 @@
               </div>
             </article>
             
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="to_call">
-          <button type="button" class="lane-head" data-status-jump="to_call">
-            <span>Llamar</span>
-            <b data-lane-count="to_call">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="contacted">
-          <button type="button" class="lane-head" data-status-jump="contacted">
-            <span>Contactado</span>
-            <b data-lane-count="contacted">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="doubtful">
-          <button type="button" class="lane-head" data-status-jump="doubtful">
-            <span>Dudoso</span>
-            <b data-lane-count="doubtful">0</b>
-          </button>
-          <div class="lane-cards">
-            
-            <article class="listing low" data-source="Idealista" data-ref="idealista-alcaniz-temporal-20260709" data-district="Timon / Barajas" data-status="doubtful" data-score="25" data-price="1490" data-bedrooms="2" data-urgent="0" data-seen-today="0" data-search="calle alcaniz timon / barajas idealista-alcaniz-temporal-20260709 1490 zona cercana, precio dentro, habitaciones ok, 2 habitaciones justo de metros, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad descartable, nuevo">
-              <div class="score">25</div>
-              <div class="main">
-                <h2>Calle Alcaniz</h2>
-                <div class="meta">
-                  <span>Timon / Barajas</span>
-                  <span>1.490 €</span>
-                  <span>56 m2</span>
-                  <span>2 hab</span>
-                  <span>2026-07-09</span>
-                  <span>visto 2026-07-09</span>
-                </div>
-                <p>zona cercana, precio dentro, habitaciones ok, 2 habitaciones justo de metros, justo de metros, accesible/bajo/ascensor, sin telefono visible, temporalidad descartable, nuevo</p>
-                
-                <div class="actions">
-                  
-                  <a href="https://www.idealista.com/geo/alquiler-viviendas/calle-alcaniz-madrid-madrid/" target="_blank">Abrir fuente</a>
-                  <button type="button" data-copy='{&quot;source&quot;: &quot;Idealista&quot;, &quot;ref&quot;: &quot;idealista-alcaniz-temporal-20260709&quot;, &quot;address&quot;: &quot;Calle Alcaniz&quot;, &quot;price&quot;: &quot;1.490 €&quot;, &quot;score&quot;: &quot;25&quot;}'>Copiar</button>
-                  <button type="button" data-messages='{&quot;whatsapp&quot;: &quot;Hola, te escribo por el piso de 1.490 € en Calle Alcaniz. Me interesa para alquiler estable. Queria saber si sigue disponible, condiciones y posibilidad de visita. Gracias.&quot;, &quot;formal&quot;: &quot;Buenos dias, he visto el anuncio de la vivienda en Calle Alcaniz (1.490 €) y me interesa para alquiler estable. Queria saber si sigue disponible, cuales son las condiciones de entrada y que documentacion necesitan. Si el perfil encaja, me gustaria concertar una visita. Muchas gracias.&quot;, &quot;short&quot;: &quot;Hola, me interesa el piso de 1.490 € en Calle Alcaniz. Queria saber si sigue disponible y si se podria visitar. Gracias.&quot;, &quot;questions&quot;: &quot;Hola, me interesa el piso de 1.490 € en Calle Alcaniz. Antes de avanzar, queria confirmar si sigue disponible, si tiene ascensor o es bajo, si el contrato es de larga duracion, que requisitos piden y que gastos hay que aportar a la entrada. Gracias.&quot;}'>Mensaje</button>
-                  
-                  <button type="button" data-remote-status="new">Nuevo</button>
-                  <button type="button" data-remote-status="to_call">Llamar</button>
-                  <button type="button" data-remote-status="contacted">Contactado</button>
-                  <button type="button" data-remote-status="doubtful">Dudoso</button>
-                  <button type="button" data-remote-status="waiting_reply">Esperando</button>
-                  <button type="button" data-remote-status="favorite">Favorito</button>
-                  <button type="button" data-remote-status="scheduled_visit">Visita</button>
-                  <button type="button" data-remote-status="discarded">Descartar</button>
-                  <button type="button" data-remote-status="unavailable">No disponible</button>
-                
-                  <span>Ref. idealista-alcaniz-temporal-20260709</span>
-                  <span class="status-pill" data-status-label>Dudoso</span>
-            
-                </div>
-              </div>
-            </article>
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="waiting_reply">
-          <button type="button" class="lane-head" data-status-jump="waiting_reply">
-            <span>Esperando</span>
-            <b data-lane-count="waiting_reply">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="favorite">
-          <button type="button" class="lane-head" data-status-jump="favorite">
-            <span>Favorito</span>
-            <b data-lane-count="favorite">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="scheduled_visit">
-          <button type="button" class="lane-head" data-status-jump="scheduled_visit">
-            <span>Visita</span>
-            <b data-lane-count="scheduled_visit">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="discarded">
-          <button type="button" class="lane-head" data-status-jump="discarded">
-            <span>Descartado</span>
-            <b data-lane-count="discarded">0</b>
-          </button>
-          <div class="lane-cards">
-            
-            <article class="listing mid" data-source="Fotocasa" data-ref="fotocasa-torrejon-3hab-20260708" data-district="Rivas-Vaciamadrid" data-status="discarded" data-score="65" data-price="1600" data-bedrooms="3" data-urgent="0" data-seen-today="0" data-search="avenida de la democracia, urbanizaciones rivas-vaciamadrid fotocasa-torrejon-3hab-20260708 1600 fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo">
-              <div class="score">65</div>
-              <div class="main">
-                <h2>Avenida de la Democracia, Urbanizaciones</h2>
-                <div class="meta">
-                  <span>Rivas-Vaciamadrid</span>
-                  <span>1.600 €</span>
-                  <span>107 m2</span>
-                  <span>3 hab</span>
-                  <span>2026-07-08</span>
-                  <span>visto 2026-07-08</span>
-                </div>
-                <p>fuera de zona preferida, precio alto, habitaciones ok, 3 habitaciones, amplio para 3, accesible/bajo/ascensor, sin telefono visible, eur/m2 razonable, nuevo</p>
-                
-                <div class="actions">
-                  
-                  <a href="https://www.fotocasa.es/es/alquiler/viviendas/torrejon-de-ardoz/todas-las-zonas/3-habitaciones/l" target="_blank">Abrir fuente</a>
-                  <button type="button" data-copy='{&quot;source&quot;: &quot;Fotocasa&quot;, &quot;ref&quot;: &quot;fotocasa-torrejon-3hab-20260708&quot;, &quot;address&quot;: &quot;Avenida de la Democracia, Urbanizaciones&quot;, &quot;price&quot;: &quot;1.600 €&quot;, &quot;score&quot;: &quot;65&quot;}'>Copiar</button>
-                  <button type="button" data-messages='{&quot;whatsapp&quot;: &quot;Hola, te escribo por el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Me interesa para alquiler estable. Queria saber si sigue disponible, condiciones y posibilidad de visita. Gracias.&quot;, &quot;formal&quot;: &quot;Buenos dias, he visto el anuncio de la vivienda en Avenida de la Democracia, Urbanizaciones (1.600 €) y me interesa para alquiler estable. Queria saber si sigue disponible, cuales son las condiciones de entrada y que documentacion necesitan. Si el perfil encaja, me gustaria concertar una visita. Muchas gracias.&quot;, &quot;short&quot;: &quot;Hola, me interesa el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Queria saber si sigue disponible y si se podria visitar. Gracias.&quot;, &quot;questions&quot;: &quot;Hola, me interesa el piso de 1.600 € en Avenida de la Democracia, Urbanizaciones. Antes de avanzar, queria confirmar si sigue disponible, si tiene ascensor o es bajo, si el contrato es de larga duracion, que requisitos piden y que gastos hay que aportar a la entrada. Gracias.&quot;}'>Mensaje</button>
-                  
-                  <button type="button" data-remote-status="new">Nuevo</button>
-                  <button type="button" data-remote-status="to_call">Llamar</button>
-                  <button type="button" data-remote-status="contacted">Contactado</button>
-                  <button type="button" data-remote-status="doubtful">Dudoso</button>
-                  <button type="button" data-remote-status="waiting_reply">Esperando</button>
-                  <button type="button" data-remote-status="favorite">Favorito</button>
-                  <button type="button" data-remote-status="scheduled_visit">Visita</button>
-                  <button type="button" data-remote-status="discarded">Descartar</button>
-                  <button type="button" data-remote-status="unavailable">No disponible</button>
-                
-                  <span>Ref. fotocasa-torrejon-3hab-20260708</span>
-                  <span class="status-pill" data-status-label>Descartado</span>
-            
-                </div>
-              </div>
-            </article>
-            
-          </div>
-        </section>
-        
-
-        <section class="lane-column" data-lane="unavailable">
-          <button type="button" class="lane-head" data-status-jump="unavailable">
-            <span>No disponible</span>
-            <b data-lane-count="unavailable">0</b>
-          </button>
-          <div class="lane-cards">
-            
-          </div>
-        </section>
-        
-        </section>
-      </section>
-    </div>
+    </section>
     <section class="message-panel" id="messagePanel" hidden aria-label="Mensaje para copiar">
       <header>
         <h2>Mensaje para copiar</h2>
@@ -8330,7 +8178,7 @@
         viewButtons.forEach((item) => item.classList.toggle('active', item.dataset.view === 'all'));
         filters.status.value = button.dataset.statusJump;
         applyFilters();
-        document.querySelector('#board')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('#listings')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
     function showMessagePanel(messages) {
@@ -8397,8 +8245,6 @@
       item.dataset.status = status;
       const label = item.querySelector('[data-status-label]');
       if (label) label.textContent = STATUS_LABELS[status] || status;
-      const lane = document.querySelector(`.lane-column[data-lane="${status}"] .lane-cards`);
-      if (lane && item.parentElement !== lane) lane.appendChild(item);
     }
     async function loadRemoteStates() {
       if (!STATE_API_URL) return;
